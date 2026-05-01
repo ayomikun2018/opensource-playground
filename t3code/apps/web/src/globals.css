@@ -1,0 +1,4 @@
+@import "@repo/tailwind-config/styles.css";
+/* Scan UI package so Tailwind generates classes used by @repo/ui */
+@source "../../../packages/ui/src/**/*.tsx";
+@source "../../../packages/ui/src/**/*.ts";
