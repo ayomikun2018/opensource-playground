@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ChatRouteImport } from './routes/_chat'
 import { Route as ChatIndexRouteImport } from './routes/_chat.index'
+import { Route as ChatThreadIdRouteImport } from './routes/_chat.$threadId'
 
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
@@ -27,27 +28,35 @@ const ChatIndexRoute = ChatIndexRouteImport.update({
   path: '/',
   getParentRoute: () => ChatRoute,
 } as any)
+const ChatThreadIdRoute = ChatThreadIdRouteImport.update({
+  id: '/$threadId',
+  path: '/$threadId',
+  getParentRoute: () => ChatRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof ChatIndexRoute
   '/settings': typeof SettingsRoute
+  '/$threadId': typeof ChatThreadIdRoute
 }
 export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
+  '/$threadId': typeof ChatThreadIdRoute
   '/': typeof ChatIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_chat': typeof ChatRouteWithChildren
   '/settings': typeof SettingsRoute
+  '/_chat/$threadId': typeof ChatThreadIdRoute
   '/_chat/': typeof ChatIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings'
+  fullPaths: '/' | '/settings' | '/$threadId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/settings' | '/'
-  id: '__root__' | '/_chat' | '/settings' | '/_chat/'
+  to: '/settings' | '/$threadId' | '/'
+  id: '__root__' | '/_chat' | '/settings' | '/_chat/$threadId' | '/_chat/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -78,14 +87,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChatIndexRouteImport
       parentRoute: typeof ChatRoute
     }
+    '/_chat/$threadId': {
+      id: '/_chat/$threadId'
+      path: '/$threadId'
+      fullPath: '/$threadId'
+      preLoaderRoute: typeof ChatThreadIdRouteImport
+      parentRoute: typeof ChatRoute
+    }
   }
 }
 
 interface ChatRouteChildren {
+  ChatThreadIdRoute: typeof ChatThreadIdRoute
   ChatIndexRoute: typeof ChatIndexRoute
 }
 
 const ChatRouteChildren: ChatRouteChildren = {
+  ChatThreadIdRoute: ChatThreadIdRoute,
   ChatIndexRoute: ChatIndexRoute,
 }
 
