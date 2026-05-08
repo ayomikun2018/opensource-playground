@@ -8,6 +8,9 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { WEB_APP_NAME } from "../branding";
+import AppSidebarLayout from "../components/AppSidebarLayout";
+import { TooltipProvider } from "@repo/ui/components/ui/tooltip";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -20,7 +23,7 @@ export const Route = createRootRoute({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "TanStack Start Starter",
+        title: WEB_APP_NAME,
       },
     ],
   }),
@@ -30,7 +33,11 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <RootDocument>
-      <Outlet />
+      <TooltipProvider>
+        <AppSidebarLayout>
+          <Outlet />
+        </AppSidebarLayout>
+      </TooltipProvider>
     </RootDocument>
   );
 }
@@ -43,6 +50,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
+
         <Scripts />
       </body>
     </html>
