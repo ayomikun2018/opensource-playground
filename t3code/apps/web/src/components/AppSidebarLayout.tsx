@@ -2,7 +2,7 @@ import {
   Sidebar,
   SidebarProvider,
   SidebarRail,
-} from "@repo/ui/components/ui/sidebar";
+} from "@repo/ui/sidebar";
 import { AppSidebar } from "./AppSidebar";
 export default function AppSidebarLayout({
   children,

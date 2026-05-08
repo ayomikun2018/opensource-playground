@@ -10,7 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { WEB_APP_NAME } from "../branding";
 import AppSidebarLayout from "../components/AppSidebarLayout";
-import { TooltipProvider } from "@repo/ui/components/ui/tooltip";
+import { TooltipProvider } from "@repo/ui/tooltip";
 
 export const Route = createRootRoute({
   head: () => ({

@@ -2,7 +2,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@repo/ui/components/ui/tooltip";
+} from "@repo/ui/tooltip";
 import React, { useMemo, useState } from "react";
 import { WEB_APP_VERSION } from "../branding";
 import {
@@ -12,7 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-} from "@repo/ui/components/ui/sidebar";
+} from "@repo/ui/sidebar";
 import {
   ChevronRightIcon,
   FolderIcon,
@@ -20,12 +20,12 @@ import {
   SettingsIcon,
   SquarePen,
 } from "lucide-react";
-import { useNavigate } from "@tanstack/react-router";
-import { Thread, useStore } from "../store";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { MOCK_PROJECTS } from "../mocks/sidebarData";
 import { Button } from "../../../../packages/ui/src/components/ui/button";
 import { Input } from "../../../../packages/ui/src/components/ui/input";
-import { cn } from "../../../../packages/ui/src/lib/utils";
+import { cn } from "@repo/ui/utils";
+import { Thread } from "../types";
 
 export const isNonEmpty = (self: string): boolean => self.length > 0;
 
@@ -79,14 +79,18 @@ function SidebarProjectThreadList({ threads }: { threads: Thread[] }) {
           key={thread.id}
           className="h-8 !bg-transparent hover:!bg-accent/30"
         >
-          <div className="flex w-full items-center justify-between">
-            <span className="truncate text-[11px] text-foreground/70">
-              {thread.title}
-            </span>
-            <span className="text-[9px] text-muted-foreground/60">
-              {thread.updatedAt}
-            </span>
-          </div>
+          <Link
+            to="/$threadId"
+            params={{ threadId: thread.id }}
+            className="flex w-full items-center justify-between"
+          >
+              <span className="truncate text-[11px] text-foreground/70">
+                {thread.title}
+              </span>
+              <span className="text-[9px] text-muted-foreground/60">
+                {thread.updatedAt}
+              </span>
+          </Link>
         </SidebarMenuButton>
       ))}
     </SidebarMenuSub>
@@ -99,21 +103,16 @@ function AppSidebarBody() {
   const [expandedProjects, setExpandedProjects] = useState<
     Record<string, boolean>
   >({});
-  const createProject = useStore((store) => store.createProject);
 
   const cwdTitle = cwd.trim().split(/[/\\]/).filter(isNonEmpty).pop() ?? cwd;
 
   const handleCreateProject = () => {
-    console.log("Creating project with path:", cwd);
-    createProject(cwdTitle);
     setCwd("");
     setShowAddProjectSection(false);
   };
-  const projectsObject = useStore((store) => store.projects);
   const projects = useMemo(() => {
-    const storeArray = Object.values(projectsObject);
-    return storeArray.length > 0 ? storeArray : MOCK_PROJECTS;
-  }, [projectsObject]);
+    return MOCK_PROJECTS;
+  }, []);
 
   const toggleProject = (projectId: string) => {
     setExpandedProjects((prev) => ({
