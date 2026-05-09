@@ -7,9 +7,9 @@ export const Route = createFileRoute("/_chat")({
 
 function ChatRouteLayout() {
   return (
-    <div className="flex flex-col w-full h-screen overflow-hidden">
+    <div className="flex flex-col w-full h-screen  min-h-0  overflow-hidden">
       <ChatNavbar />
-      <Outlet />;
+      <Outlet />
     </div>
   );
 }

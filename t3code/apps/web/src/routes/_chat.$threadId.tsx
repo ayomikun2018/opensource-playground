@@ -3,6 +3,7 @@ import { Textarea } from "@repo/ui/textarea";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUp, PlusIcon } from "lucide-react";
 import { cn } from "@repo/ui/utils";
+import ChatView from "../components/ChatView";
 
 export const Route = createFileRoute("/_chat/$threadId")({
   component: RouteComponent,
@@ -10,26 +11,29 @@ export const Route = createFileRoute("/_chat/$threadId")({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col h-full w-full  ">
-      <main className="flex-1 overflow-y-auto p-4"></main>
-      <div className="w-full p-4 shrink-0 bg-gradient-to-t from-background via-background to-transparent">
-        <div className="max-w-3xl mx-auto relative flex flex-col items-center">
+    <div className="flex flex-col flex-1 w-full overflow-hidden">
+      <main className="flex-1 overflow-y-auto p-4">
+        <div className="mx-auto w-full max-w-3xl">
+          <ChatView />
+        </div>
+      </main>
+      <div className="shrink-0  bg-background p-4">
+        <div className="relative mx-auto flex max-w-3xl flex-col items-center">
           <Textarea
             placeholder="Ask anything, @tag files/folders, or use / to show available commands"
             className={cn(
-              "w-full min-h-[120px] max-h-[200px] p-4 pr-12",
-              "border-blue-400/50 shadow-lg focus:border-blue-500",
-              "text-sm resize-none rounded-2xl ring-0 focus-visible:ring-1 focus-visible:ring-blue-400",
+              "min-h-[120px] max-h-[200px] w-full resize-none rounded-2xl border-blue-400/50 p-4 pr-12 text-sm shadow-lg",
+              "focus:border-blue-500 focus-visible:ring-1 focus-visible:ring-blue-400",
             )}
           />
 
-          <div className="absolute right-3 bottom-3">
+          <div className="absolute bottom-3 right-3">
             <Button
               size="icon"
               variant="ghost"
-              className="size-8 rounded-full text-white bg-blue-500"
+              className="size-8 rounded-full bg-blue-500 text-white"
             >
-              <ArrowUp className="size-4  font-bold" />
+              <ArrowUp className="size-4 font-bold" />
             </Button>
           </div>
         </div>
