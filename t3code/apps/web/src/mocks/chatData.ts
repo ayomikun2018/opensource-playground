@@ -124,7 +124,39 @@ export const MOCK_THREAD_ENTRIES: ThreadEntries = [
     message: {
       id: crypto.randomUUID(),
       role: "assistant",
-      text: "Your React dashboard project is ready 🚀",
+      text: `
+# Dashboard Update
+
+Added a new footer action below the \`Settings\` section.
+
+## What Changed
+
+- Added footer button
+- Matched existing styling
+- Improved spacing
+
+### Commands Run
+
+- \`bun fmt\`
+- \`bun lint\`
+- \`bun typecheck\`
+
+---
+
+## Example
+
+\`\`\`tsx
+<SidebarMenuButton>
+  New button
+</SidebarMenuButton>
+\`\`\`
+
+> Everything completed successfully.
+
+Visit [Vercel](https://vercel.com)
+
+Inline code example: \`const value = true\`
+`,
       createdAt: new Date().toISOString(),
     },
     showCompletionDivider: true,

@@ -40,7 +40,6 @@ export type WorkEntry = {
   kind: "work";
   id: string;
   createdAt: string;
-
   groupedEntries: WorkGroupedEntry[];
   showCompletionDivider?: boolean;
 
