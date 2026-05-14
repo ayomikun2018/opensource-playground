@@ -63,7 +63,7 @@ export default function ChatTimeline({ rows }: ChatTimelineProps) {
                   className={cn(
                     "rounded-2xl py-3",
                     isUser
-                      ? "max-w-[75%] rounded-br-sm border border-border bg-secondary px-4"
+                      ? "max-w-[75%] rounded-br-sm border border-border bg-secondary px-4 my-2"
                       : "w-full rounded-bl-sm",
                   )}
                 >
