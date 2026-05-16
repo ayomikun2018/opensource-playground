@@ -17,19 +17,20 @@ function ChatMarkdown({ content }: ChatMarkdownProps) {
         remarkPlugins={[remarkGfm]}
         components={{
           h1: ({ children }) => (
-            <h1 className="mb-4 mt-6 text-3xl font-semibold tracking-tight">
+            <div className="mt-4 text-base font-semibold text-foreground">
               {children}
-            </h1>
+            </div>
           ),
-
           h2: ({ children }) => (
-            <h2 className="mt-6 text-2xl font-semibold tracking-tight">
+            <div className="mt-3 text-sm font-semibold text-foreground/90">
               {children}
-            </h2>
+            </div>
           ),
 
           h3: ({ children }) => (
-            <h3 className="mt-5 text-xl font-semibold">{children}</h3>
+            <div className="mt-3 text-sm font-semibold text-foreground/90">
+              {children}
+            </div>
           ),
 
           p: ({ children }) => (

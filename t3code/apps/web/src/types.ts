@@ -26,7 +26,16 @@ export type MessageEntry = {
     createdAt: string;
   };
 };
-
+export type ProposedPlanEntry = {
+  kind: "proposed-plan";
+  id: string;
+  createdAt: string;
+  proposedPlan: {
+    id: string;
+    planMarkdown: string;
+    createdAt: string;
+  };
+};
 export type WorkGroupedEntry = {
   id: string;
   text: string;
@@ -42,7 +51,6 @@ export type WorkEntry = {
   createdAt: string;
   groupedEntries: WorkGroupedEntry[];
   showCompletionDivider?: boolean;
-
 };
 export type WorkingRow = {
   kind: "working";
@@ -50,7 +58,7 @@ export type WorkingRow = {
   createdAt?: string;
 };
 
-export type ThreadEntry = MessageEntry | WorkEntry;
+export type ThreadEntry = MessageEntry | WorkEntry | ProposedPlanEntry;
 
 export type ThreadEntries = ThreadEntry[];
 

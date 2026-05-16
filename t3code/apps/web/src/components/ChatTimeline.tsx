@@ -3,6 +3,7 @@ import React from "react";
 import { ChatTimelineProps, ThreadEntry } from "../types";
 import ChatMarkdown from "./ChatMarkdown";
 import { timeStampFormat } from "../timestampFormat";
+import ChatPlanCard from "./ChatPlanCard";
 
 export default function ChatTimeline({ rows }: ChatTimelineProps) {
   function renderRowContent(row: ThreadEntry) {
@@ -92,6 +93,11 @@ export default function ChatTimeline({ rows }: ChatTimelineProps) {
               </div>
             );
           })()}
+        {row.kind === "proposed-plan" && (
+          <div className="min-w-0 px-1 py-0.5">
+            <ChatPlanCard planMarkdown={row.proposedPlan.planMarkdown} />
+          </div>
+        )}
       </div>
     );
   }

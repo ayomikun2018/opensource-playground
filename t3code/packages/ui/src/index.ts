@@ -1,4 +1,5 @@
 export { Button, buttonVariants } from "@repo/ui/button";
+export { Badge } from "@repo/ui/badge";
 export { Input } from "@repo/ui/input";
 export { Separator } from "@repo/ui/separator";
 export {
@@ -39,9 +40,5 @@ export {
 } from "@repo/ui/sidebar";
 export { Skeleton } from "@repo/ui/skeleton";
 export { Textarea } from "@repo/ui/textarea";
-export {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@repo/ui/tooltip";
+export { Tooltip, TooltipContent, TooltipTrigger } from "@repo/ui/tooltip";
 export { cn } from "@repo/ui/utils";

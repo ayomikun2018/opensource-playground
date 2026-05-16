@@ -4,6 +4,51 @@ const BASE = Date.parse("2026-05-09T12:00:00.000Z");
 
 const at = (seconds: number) => new Date(BASE + seconds * 1000).toISOString();
 
+export const demoPlanMarkdown = String.raw`
+# Add DemoPage Top-Level Showcase Route
+
+## Summary
+
+Add a new top-level page at /demo that renders inside the existing app shell and is reachable from the main sidebar footer.
+
+## Scope
+
+Implement a web-only route and presentational page with no server, contracts, or store changes.
+
+In scope:
+- New top-level route: /demo
+- New DemoPage component with static content
+- New sidebar footer entry for navigation to /demo
+
+## Implementation Plan
+
+### 1. Add a dedicated page component
+
+Create apps/web/src/components/demo/DemoPage.tsx.
+
+Use:
+- SidebarInset
+- SidebarTrigger
+- existing shell layout
+
+### 2. Add the route
+
+Create:
+
+createFileRoute("/demo")
+
+### 3. Add sidebar navigation
+
+Update:
+
+navigate({ to: "/demo" })
+
+## Acceptance Criteria
+
+- /demo is reachable
+- page renders correctly
+- no server dependency
+`;
 export const MOCK_THREAD_ENTRIES: ThreadEntries = [
   {
     kind: "message",
@@ -552,6 +597,86 @@ pnpm lint
 pnpm typecheck
 pnpm build
 \`\`\`
+
+Visit [Vercel](https://vercel.com)
+`,
+      createdAt: at(72),
+    },
+    showCompletionDivider: true,
+  },
+  {
+    kind: "proposed-plan",
+    id: crypto.randomUUID(),
+    createdAt: at(44),
+    proposedPlan: {
+      id: crypto.randomUUID(),
+      planMarkdown: demoPlanMarkdown,
+      createdAt: at(44),
+    },
+  },
+  {
+    kind: "message",
+    id: crypto.randomUUID(),
+    createdAt: at(50),
+    durationStart: at(50),
+    message: {
+      id: crypto.randomUUID(),
+      role: "user",
+      text: `PLEASE IMPLEMENT THIS PLAN:\n\n${demoPlanMarkdown}`,
+      createdAt: at(50),
+    },
+    showCompletionDivider: false,
+  },
+  {
+    kind: "work",
+    id: crypto.randomUUID(),
+    createdAt: at(65),
+    groupedEntries: [
+      {
+        id: crypto.randomUUID(),
+        text: "Running lint",
+        status: "completed",
+        createdAt: at(65),
+      },
+      {
+        id: crypto.randomUUID(),
+        text: "Running typecheck",
+        status: "completed",
+        createdAt: at(66),
+      },
+      {
+        id: crypto.randomUUID(),
+        text: "Running production build",
+        status: "running",
+        createdAt: at(67),
+      },
+    ],
+    showCompletionDivider: false,
+  },
+
+  {
+    kind: "message",
+    id: crypto.randomUUID(),
+    createdAt: at(72),
+    durationStart: at(65),
+    message: {
+      id: crypto.randomUUID(),
+      role: "assistant",
+      text: `
+# Build Successful
+
+The application compiled successfully.
+
+## Build Summary
+
+- Typecheck passed
+- Lint passed
+- Production bundle optimized
+- Markdown rendering stabilized
+- Composer layout fixed
+
+---
+
 
 Visit [Vercel](https://vercel.com)
 `,
